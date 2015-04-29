@@ -1,0 +1,10 @@
+include("mds_metric.jl")
+include("output.jl")
+include("interpolate.jl")
+
+data = contact_freq_to_distance_matrix("data_fish/combined_You_Pro_merged_chr4_arm1.csv", scale=10, exponent=1/3)
+coords = mds_metric(data)
+interp_coords = interp_3d(coords, 10)
+output_txt(coords, "pro_shortest_paths_exact.txt")
+output_txt(interp_coords, "interp_pro_shortest_paths_exact.txt")
+#output_pdb(coords, "pro_shortest_paths_exact.pdb")
