@@ -9,9 +9,9 @@ Email: [yue_zhang@alumni.brown.edu](mailto:steven_criscione@alumni.brown.edu)
 
 Julia libraries:
 
-[Ipopt.jl](https://github.com/JuliaOpt/Ipopt.jl)
-[Grid.jl](https://github.com/timholy/Grid.jl) (for 3D interpolation)
-[ArgParse.jl](https://github.com/carlobaldassi/ArgParse.jl) (for the command-line interface)
+[Ipopt.jl](https://github.com/JuliaOpt/Ipopt.jl)  
+[Grid.jl](https://github.com/timholy/Grid.jl) (for 3D interpolation)  
+[ArgParse.jl](https://github.com/carlobaldassi/ArgParse.jl) (for the command-line interface)  
 
 Visualization: add link to Hi-Brow
 
