@@ -1,25 +1,21 @@
-#FISH_MDS
+#FISH-MDS: MDS For Chromosome Structure Inference With Constraints From FISH
 ## Tutorial By Steven Criscione and Jack Zhang
 Email: [steven_criscione@brown.edu](mailto:steven_criscione@brown.edu)
 Email: [yue_zhang@alumni.brown.edu](mailto:steven_criscione@alumni.brown.edu)
 
-### Dependencies
-# FISH-MDS: MDS For Chromosome Structure Inference With Constraints From FISH
-
-Some tools for multidimensional scaling for inferring 3D chromosome structure in Julia.
-
-## Requirements
+## Dependencies
 
 [Julia](http://julialang.org/)
+
+Julia libraries:
 
 [Ipopt.jl](https://github.com/JuliaOpt/Ipopt.jl)
 
 [Grid.jl](https://github.com/timholy/Grid.jl) (for 3D interpolation)
 
-[ArgParse.jl](https://github.com/carlobaldassi/ArgParse.jl) 
-(for the command-line interface)
+[ArgParse.jl](https://github.com/carlobaldassi/ArgParse.jl) (for the command-line interface)
 
-Visualization: python, [mayavi](http://docs.enthought.com/mayavi/mayavi/)
+Visualization: add link to Hi-Brow
 
 ## Usage
 
