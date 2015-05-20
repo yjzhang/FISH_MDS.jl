@@ -10,30 +10,33 @@ Email: [yue_zhang@alumni.brown.edu](mailto:steven_criscione@alumni.brown.edu)
 Julia libraries:
 
 [Ipopt.jl](https://github.com/JuliaOpt/Ipopt.jl)
-
 [Grid.jl](https://github.com/timholy/Grid.jl) (for 3D interpolation)
-
 [ArgParse.jl](https://github.com/carlobaldassi/ArgParse.jl) (for the command-line interface)
 
 Visualization: add link to Hi-Brow
 
 ## Usage
 
-    usage: julia main.jl [-f FISH-CONSTRAINTS] [-r RADIUS] [-o OUTPUT] [--interp]
-                   [--auto-scale] [--shortest-paths] [-h] filename
-
-    positional arguments:
-        filename              CSV file containing HiC counts
+    usage: main.jl [-f FISH] [-r RADIUS] [-o OUTPUT] [--interp]
+    [--auto-scale] [--shortest-paths] [-h] filename
+    
+        positional arguments:
+       filename             CSV file containing HiC counts
 
     optional arguments:
-        -f, --fish  FISH      FISH constraints filename (default: none)
-        -r, --radius RADIUS   Radius of the chromosome (determined from imaging) (type: Number, default: 1)
-        -o, --output OUTPUT   Output file name (default: "" - if not provided, the output file is called [name]_mds_coords.txt)
-        --interp           Flag: use interpolation
-        --auto-scale          Flag: automatically infer the scaling factor
-        (requires constraints)
-        --shortest-paths       Flag: use shortest paths reconstruction 
-        -h, --help            show this help message and exit
+    -f, --fish FISH      FISH constraints file (default: "")
+    -r, --radius RADIUS  Radius of chromosome (determined via imaging) (type: Number, default: 1)
+    -o, --output OUTPUT  Output file name (default: "")
+    --interp             Flag: use interpolation
+    --auto-scale         Flag: automatically infer the scaling factor (requires FISH constraints)
+    --shortest-paths     Flag: use shortest paths reconstruction
+    -h, --help           show this help message and exit
+
+
+
+
+
+
 
 ## Examples
 
