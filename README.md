@@ -34,7 +34,17 @@ Visualization: add link to Hi-Brow
         -h, --help           show this help message and exit
 
 
+##FISH_MDS.jl installation:
 
+First, in the command-line open interactive Julia, run 
+
+    julia
+    julia> Pkg.clone("https://github.com/yjzhang/FISH_MDS.jl.git")
+
+Then, create a "main.jl" file with the following data:
+
+    julia> using FISH_MDS
+    julia> mds_main()
 
 
 
