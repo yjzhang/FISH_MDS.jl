@@ -20,7 +20,7 @@ Visualization: add link to Hi-Brow
     usage: main.jl [-f FISH] [-r RADIUS] [-o OUTPUT] [--interp]
     [--auto-scale] [--shortest-paths] [-h] filename
     
-        positional arguments:
+    positional arguments:
        filename             CSV file containing HiC counts
 
     optional arguments:
