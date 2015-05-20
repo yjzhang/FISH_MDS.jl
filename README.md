@@ -49,7 +49,7 @@ Then, create a "main.jl" file with the following commands:
 ##Input files
 
 1) The first required file the running main.jl is the normalized Hi-C interaction contact matrix.
-In the following examples the file is:
+In the following examples the file is:  
 `HiC_matrix_chr4_condition1.csv`
 
 This file is a comma seperate csv file with no headers or row names.  The file must be normalized contacts and not raw counts.  Raw signal from Hi-C experiments has inherent biases that are disruptive to MDS procedure.
@@ -59,7 +59,7 @@ Example lines from HiC_matrix_chr4_condition1.csv:
     995.8,127.0956,137.6080,136.1468,60.2406,53.2425,...
     ...
 
-2) A second useful file to maintain is:
+2) A second useful file to maintain is:  
     `HiC_chr4_bins.bed.` 
     
 This is a bed format tab-delimited text file that contains the positions of the bins used by the Hi-C contact matrix.  For example, if the bin size is 200000 (0.2 Mb) then this file will contain:
@@ -71,7 +71,7 @@ This is a bed format tab-delimited text file that contains the positions of the 
 And the file will correspond to the rows of the HiC_matrix_chr4_condition1.csv signal.  Therefore, the number of rows in the Hi-C matrix and the bins file should be identical.  This bed file is not needed by main.jl, but is useful to build optional file 3 and additional tracks for viewing together with the 3D model.
 
 
-3) The third type input file is optional. This is the file containing measured distances between DNA FISH probes from a 3D DNA FISH experiment typically measured in microns.  In the second running example for main.jl the file is:
+3) The third type input file is optional. This is the file containing measured distances between DNA FISH probes from a 3D DNA FISH experiment typically measured in microns.  In the second running example for main.jl the file is:  
     `chr4_condition1_FISH_probes.txt`
 
 This file looks like:
@@ -81,10 +81,9 @@ This file looks like:
     18700000 26700000 2.8674
     7900000 26700000 1.5315
 
-This is a space delimited text file. Line-1 is the number of subsequent lines in the file, in this case 3.  Field 1 of line-2 is the position bin in the Hi-C matrix for probe-1.  Field 2 of line-1 is the position bin in the Hi-C matrix for probe-2.  Field 3 is the distance in microns between probe-1 and probe 2.  
+A space delimited text file. Line-1 is the number of subsequent lines, in this case 3.  Field 1 of line-2 is the bin in the Hi-C matrix for probe-1.  Field 2 of line-1 is the bin in the Hi-C matrix for probe-2.  Field 3 is the distance in microns between probe-1 and probe-2. Line-3 is the interaction between probe-2 and probe-3. Line-4 is the interaction between probe-1 and probe-3.
 
-
-
+To find the bin for the probes 1-3, you can intersect the genomic coordinates of the probes (in bed format) with the bins `HiC_chr4_bins.bed.`  (in bed format) using [bedtools](http://bedtools.readthedocs.org/en/latest/#) and the command `bedtools intersect`. In the case a single probe, like probe-1 for instance, overlaps with multiple bins the median bin start position can be used as the position of the probe.
 
 ##Examples
 
