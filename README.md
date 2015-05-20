@@ -88,18 +88,42 @@ To find the bin for the probes 1-3, you can intersect the genomic coordinates of
 ##Examples
 
 The main MDS algorithm used by FISH_MDS.jl is MDS2 from Varoquaux et al. [1].
-To run the defualt MDS without constraints run:
+1) To run the defualt MDS without constraints run:
 
 `julia main.jl -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout `
 
-To run MDS with provided FISH constraints do:
+The results will be output to `chr4_condition1.txt`. The format of  `chr4_condition1.txt` is the first line states the # of subsequent lines, and the remaining lines contain x,y,z coordinates in space seperated format. Removed indices which are relevant for visualization can be obtained from `chr4_condition1.stdout`, which contains all the details of the MDS optimization run.  
 
-`julia main.jl -f chr4_sen_probes.txt -o chr4_sen_arm1_test_mds.txt --auto-scale data_fish/combined_Sen_merged_chr4_arm1.csv`
+2) To run MDS with provided FISH constraints do:
 
-This runs MDS with provided FISH constraints.
+`julia main.jl -f chr4_condition1_FISH_probes.txt -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout`
 
-`julia main.jl -f data_fish/chr4_qui_probes.txt -o chr4_qui_arm1_test_mds.txt --auto-scale data_fish/combined_Young_Qui_merged_chr4_arm1.csv`
+This version will fix the relative distances between 3D DNA FISH in the resultant 3D chromosome structure.
 
+
+3) To run MDS with provided FISH constraints and re-scale to 3D DNA FISH distance run:
+
+`julia main.jl --auto-scale -f chr4_condition1_FISH_probes.txt -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout`
+
+This version will fix the relative distances between 3D DNA FISH in the resultant 3D chromosome structure. It will also scale the resultant 3D structure such that the numerical values of the distances between probes are equal to the distances in microns from the 3D DNA FISH.
+
+4) To run the defualt MDS and re-scale by 3D chromosome paint radius:
+
+`julia main.jl -r 0.7179 -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout`
+
+This version will run default MDS. The resultant 3D structure is re-scaled by the radius calculated from the volume of a chromosome in um^3 measured in a 3D chromosome painting experiment.
+
+5) To run MDS, apply FISH constraints, and re-scale by 3D chromosome paint radius:
+
+`julia main.jl -r 0.7179 -f chr4_condition1_FISH_probes.txt -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout`
+
+This version will fix the relative distances between 3D DNA FISH in the resultant 3D chromosome structure. It will also scale the resultant 3D structure such that the radius is equal to that calculated from the volume in um^3 of a chromosome.  The volume in um^3 is measured from 3D chromosome painting experiments.
+
+6-10) To run a shortest paths computation of wish distances before defualt MDS do:
+
+`julia main.jl --shortest-paths -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout `
+
+All the previous MDS versions can be re-run using precomputation of the wish distances in a shortest paths algorithm as proposed by Lesne et. al. [2].  An example of MDS with no constraints using shortest paths computation of wish distances is:
 
 ## References
 
