@@ -4,6 +4,7 @@ Email: [steven_criscione@brown.edu](mailto:steven_criscione@brown.edu)
 Email: [yue_zhang@alumni.brown.edu](mailto:steven_criscione@alumni.brown.edu)
 
 ## Dependencies
+FISH_MDS.jl is a Julia package that models 3D structure from Hi-C contact matrices.
 
 [Julia](http://julialang.org/)
 
