@@ -50,8 +50,7 @@ Then, create a "main.jl" file with the following commands:
 
 1) The first required file the running main.jl is the normalized Hi-C interaction contact matrix.
 In the following examples the file is:
-
-    HiC_matrix_chr4_condition1.csv
+`HiC_matrix_chr4_condition1.csv`
 
 This file is a comma seperate csv file with no headers or row names.  The file must be normalized contacts and not raw counts.  Raw signal from Hi-C experiments has inherent biases that are disruptive to MDS procedure.
 Example lines from HiC_matrix_chr4_condition1.csv:
@@ -61,8 +60,7 @@ Example lines from HiC_matrix_chr4_condition1.csv:
     ...
 
 2) A second useful file to maintain is:
-
-    HiC_chr4_bins.bed. 
+    `HiC_chr4_bins.bed.` 
     
 This is a bed format tab-delimited text file that contains the positions of the bins used by the Hi-C contact matrix.  For example, if the bin size is 200000 (0.2 Mb) then this file will contain:
 
@@ -74,8 +72,7 @@ And the file will correspond to the rows of the HiC_matrix_chr4_condition1.csv s
 
 
 3) The third type input file is optional. This is the file containing measured distances between DNA FISH probes from a 3D DNA FISH experiment typically measured in microns.  In the second running example for main.jl the file is:
-
-    chr4_condition1_FISH_probes.txt
+    `chr4_condition1_FISH_probes.txt`
 
 This file looks like:
 
