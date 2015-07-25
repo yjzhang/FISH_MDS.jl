@@ -1,3 +1,4 @@
+using Ipopt
 
 contains_inf(array) = mapreduce(x->(isinf(x)), &, array)
 
@@ -163,7 +164,9 @@ function remove_infs(prob::MDSProblem)
 end
 
 
-function make_ipopt_problem(mds::MDSProblem; radius_constraint=false, fish_constraint=false)
+function make_ipopt_problem(mds::MDSProblem; radius_constraint=false, 
+        fish_constraint=false,
+        initial_coords=false)
     # Creates an Ipopt problem for the given problem instance
 
     # 3 vars for each point- x, y, z
@@ -173,6 +176,7 @@ function make_ipopt_problem(mds::MDSProblem; radius_constraint=false, fish_const
     dist = mds.dist
     rad = mds.sphere_radius
     #nuc_rad = mds.nucleolus_radius
+    # TODO: add options for initial coordinates
     initial_x = [rand()*2*rad - rad for i in 1:num_vars]
     # m is the number of constraints
     m = 0

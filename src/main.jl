@@ -1,5 +1,11 @@
 #!/usr/bin/env julia
 
+using ArgParse
+
+include("mds_approximate_fish.jl")
+include("mds_metric.jl")
+include("interpolate.jl")
+include("output.jl")
 
 function get_distance(coords::Array{Float64, 2}, c1::Int, c2::Int)
     # Returns the distance between two points
@@ -8,6 +14,7 @@ end
 
 function validate_fish_constraints(coords::Array{Float64, 2}, mds::MDSProblem)
     # checks that the FISH constraints are sort of close...
+    # TODO: not yet implemented
     c = size(coords, 1)/size(mds.dist, 1)
 end
 
@@ -27,7 +34,8 @@ end
 
 function run_mds(filename::String; scale::Number=1, constraint::String="",
             interp::Bool=true, exponent::Number=1/3, output_name::String="",
-            auto_scale::Bool=false, shortest_paths::Bool=false)
+            auto_scale::Bool=false, shortest_paths::Bool=false,
+            starting_points_file::String="")
     # loading data
     data = load_data(filename, scale=1, exponent=exponent)
     if shortest_paths
@@ -58,7 +66,11 @@ function run_mds(filename::String; scale::Number=1, constraint::String="",
         println()
         ipopt_problem = make_ipopt_problem(mds, radius_constraint=false,
                 fish_constraint=true)
-    end    
+    end
+    # initial point
+    if length(starting_points_file) > 0
+        ipopt_problem.x = float64(readdlm(starting_points_file)[2:end,:])
+    end
     # solve problem
     solveProblem(ipopt_problem)
     coords = reshape(ipopt_problem.x, 3, int(length(ipopt_problem.x)/3))'
@@ -102,6 +114,9 @@ function parse_cl()
         "--output", "-o"
             help = "Output file name"
             default = ""
+        "--init", "-i"
+            help = "Initial starting coords file"
+            default = ""
         "--interp"
             help = "Flag: use interpolation"
             action = :store_true
@@ -116,7 +131,7 @@ function parse_cl()
     return parse_args(s)
 end
 
-function mds_main()
+function main()
     args = parse_cl()
     run_mds(args["filename"], 
             constraint = args["fish"], 
@@ -126,3 +141,5 @@ function mds_main()
             interp = args["interp"],
             shortest_paths = args["shortest-paths"])
 end
+
+main()
