@@ -69,7 +69,8 @@ function run_mds(filename::String; scale::Number=1, constraint::String="",
     end
     # initial point
     if length(starting_points_file) > 0
-        ipopt_problem.x = float64(readdlm(starting_points_file)[2:end,:])
+        start_points = float64(readdlm(starting_points_file)[2:end,:])
+        ipopt_problem.x = reshape(start_points', len(start_points))
     end
     # solve problem
     solveProblem(ipopt_problem)
