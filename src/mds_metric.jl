@@ -1,3 +1,5 @@
+include("graph.jl")
+
 function contact_freq_to_distance_matrix(contact_file::String; remove_inf=true, scale=1, exponent=1/3)
     # turns a csv file of contact frequences into a distance matrix
     contact_data = readcsv(contact_file, Float64)

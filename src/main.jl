@@ -142,5 +142,3 @@ function main()
             interp = args["interp"],
             shortest_paths = args["shortest-paths"])
 end
-
-main()
