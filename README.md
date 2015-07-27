@@ -18,7 +18,7 @@ Visualization: add link to Hi-Brow
 
 ## Usage
 
-    usage: main.jl [-f FISH] [-r RADIUS] [-o OUTPUT] [--interp]
+    usage: main.jl [-f FISH] [-r RADIUS] [-o OUTPUT] [-i INIT] [--interp]
         [--auto-scale] [--shortest-paths] [-h] filename
     
     positional arguments:
@@ -28,6 +28,7 @@ Visualization: add link to Hi-Brow
         -f, --fish FISH      FISH constraints file (default: "")
         -r, --radius RADIUS  Radius of chromosome (determined via imaging) (type: Number, default: 1)
         -o, --output OUTPUT  Output file name (default: "")
+        -i, --init           Initial starting coords file (in same format as output) (default: "")
         --interp             Flag: use interpolation
         --auto-scale         Flag: automatically infer the scaling factor (requires FISH constraints)
         --shortest-paths     Flag: use shortest paths reconstruction
