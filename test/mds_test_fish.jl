@@ -42,8 +42,14 @@ run_mds(filename, interp=true,
 
 println("no interp, no constraint")
 
-run_mds(filename, output_name = "test_out/sen_chr4_default.txt")
+run_mds(filename, interp=false,
+    output_name = "test_out/sen_chr4_default.txt")
 
+println("no interp, no constraint, fixed start")
+
+run_mds(filename, interp=false,
+    output_name = "test_out/sen_chr4_default_2.txt", 
+    starting_points_file="test_out/sen_chr4_default.txt")
 # new file
 filename = "data_fish/combined_Young_Qui_merged_chr18.csv"
 

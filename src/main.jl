@@ -63,11 +63,22 @@ function run_mds(filename::String; scale::Number=1, constraint::String="",
     # initial point
     if length(starting_points_file) > 0
         start_points = float64(readdlm(starting_points_file)[2:end,:])
-        starting_x = reshape(start_points', len(start_points))
+        starting_x = reshape(start_points', length(start_points))
         if length(starting_x) != length(ipopt_problem.x)
-            println("Error: starting coordinates have incorrect length. Using random starting points.")
+            l1 = length(starting_x)
+            l2 = length(ipopt_problem.x)
+            if l1 < l2
+                println("Error: not enough starting coords. Filling with random starting points.")
+                starting_x = cat(starting_x, ipopt_problem.x[l1+1:end])
+            else
+                println("Error: too many starting coords. Truncating.")
+                println(l1)
+                println(l2)
+                starting_x = starting_x[1:l2]
+            end
+        else
+            ipopt_problem.x = starting_x
         end
-        ipopt_problem.x = starting_x
     end
     # solve problem
     solveProblem(ipopt_problem)
