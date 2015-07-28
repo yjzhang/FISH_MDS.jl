@@ -1,12 +1,5 @@
 #!/usr/bin/env julia
 
-using ArgParse
-
-include("mds_approximate_fish.jl")
-include("mds_metric.jl")
-include("interpolate.jl")
-include("output.jl")
-
 function get_distance(coords::Array{Float64, 2}, c1::Int, c2::Int)
     # Returns the distance between two points
     return norm(coords[c1, :] - coords[c2, :])
@@ -70,7 +63,11 @@ function run_mds(filename::String; scale::Number=1, constraint::String="",
     # initial point
     if length(starting_points_file) > 0
         start_points = float64(readdlm(starting_points_file)[2:end,:])
-        ipopt_problem.x = reshape(start_points', len(start_points))
+        starting_x = reshape(start_points', len(start_points))
+        if length(starting_x) != length(ipopt_problem.x)
+            println("Error: starting coordinates have incorrect length. Using random starting points.")
+        end
+        ipopt_problem.x = starting_x
     end
     # solve problem
     solveProblem(ipopt_problem)
@@ -116,7 +113,7 @@ function parse_cl()
             help = "Output file name"
             default = ""
         "--init", "-i"
-            help = "Initial starting coords file"
+            help = "Starting coords file for optimization"
             default = ""
         "--interp"
             help = "Flag: use interpolation"
@@ -132,7 +129,7 @@ function parse_cl()
     return parse_args(s)
 end
 
-function main()
+function mds_main()
     args = parse_cl()
     run_mds(args["filename"], 
             constraint = args["fish"], 
@@ -140,5 +137,6 @@ function main()
             output_name = args["output"],
             auto_scale = args["auto-scale"],
             interp = args["interp"],
-            shortest_paths = args["shortest-paths"])
+            shortest_paths = args["shortest-paths"],
+            starting_points_file = args["init"])
 end

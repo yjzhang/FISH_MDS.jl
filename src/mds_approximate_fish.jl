@@ -1,5 +1,3 @@
-using Ipopt
-
 contains_inf(array) = mapreduce(x->(isinf(x)), &, array)
 
 # A data structure representing the problem data and constraints
