@@ -44,8 +44,8 @@ First, in the command-line open interactive Julia, run
 
 Then, create a "main.jl" file with the following commands:
 
-    julia> using FISH_MDS
-    julia> mds_main()
+     using FISH_MDS
+     mds_main()
 
 ##Input files
 
