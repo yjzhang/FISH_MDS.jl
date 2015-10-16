@@ -145,8 +145,14 @@ This script creates the output file `fix.chr4_condition1.txt ` with the outlier 
 
 ##Re-binning data for visualization
 
-To be added..
+We also provide a second utility script for re-binning genomic signal data (such as ChIP-seq) for compatability with Hi-C binning.  This is recommended for only broad signal profiles, such as certain histone modifications. The script requires [bedtools](http://bedtools.readthedocs.org/en/latest/#), the python module [pybedtools] (https://pythonhosted.org/pybedtools/), and for bigWig format requires the additional binary utility [bigWigToBedGraph] (http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v287/bigWigToBedGraph) in the `$PATH` variable. To run this utility script run the command:
+`python rebin_bedgraph.py input_signal bins resolution outname`
 
+an example would be:
+`python rebin_bedgraph.py H3K27me3_signal.bedGraph HiC_chr4_bins.bed 200000 H3K27me3_rebinned.bedGraph`
+
+For more information see detailed help page:
+`python rebin_bedgraph.py --help`
 
 ## References
 
