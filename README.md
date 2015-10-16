@@ -93,7 +93,7 @@ The main MDS algorithm used by FISH_MDS.jl is MDS2 from Varoquaux et al. [1].
 
 `julia main.jl -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout `
 
-The results will be output to `chr4_condition1.txt`. The format of  `chr4_condition1.txt` is the first line states the # of subsequent lines, and the remaining lines contain x,y,z coordinates in space seperated format. Removed indices which are relevant for visualization can be obtained from `chr4_condition1.stdout`, which contains all the details of the MDS optimization run.  
+The results will be output to `chr4_condition1.txt`. In the results file `chr4_condition1.txt`, the first line states the # of subsequent lines, and the remaining lines contain x,y,z coordinates in space seperated format. Removed indices which are relevant for visualization can be obtained from `chr4_condition1.stdout`, which contains all the details of the MDS optimization run.  
 
 2) To run MDS with provided FISH constraints do:
 
@@ -124,7 +124,25 @@ This version will fix the relative distances between 3D DNA FISH in the resultan
 
 `julia main.jl --shortest-paths -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout `
 
-All the previous MDS versions can be re-run using precomputation of the wish distances in a shortest paths algorithm as proposed by Lesne et. al. [2].  An example of MDS with no constraints using shortest paths computation of wish distances is:
+All the previous MDS versions can be re-run using precomputation of the wish distances in a shortest paths algorithm as proposed by Lesne et. al. [2]. 
+
+11) To run an MDS computation using an initialized set of wish distances run:
+
+`julia main.jl -i chr4_control1.txt -o chr4_condition1.txt HiC_matrix_chr4_condition1.csv > chr4_condition1.stdout `
+
+This version will try to run MDS computation from an initial set of wish distances provided by a control rather than hypothesizing wish distances.  This version of the command prevents artefacts such as global reflections of the solution for a condition with respect to a control sample. 
+
+##Removing outlier coordinates
+
+We provide a utility script to remove outlier coordinates from the resultant structural solution.  This script identifies outliers from the distribution of distances between coordinates and replaces them with the midpoint of adjacent coordinates.  
+`Rscript remove_outliers.R chr4_condition1.txt `
+
+This script creates the output file `fix.chr4_condition1.txt ` with the outlier coordinates removed.
+
+##Re-binning data for visualization
+
+To be added..
+
 
 ## References
 
