@@ -37,7 +37,7 @@ Visualization: add link to Hi-Brow
 
 ##FISH_MDS.jl installation:
 
-First, in the command-line open interactive Julia, run 
+First, in the command-line, open interactive Julia and run 
 
     julia
     julia> Pkg.clone("https://github.com/yjzhang/FISH_MDS.jl.git")
@@ -46,6 +46,10 @@ Then, create a "main.jl" file with the following commands:
 
      using FISH_MDS
      mds_main()
+
+You can run this with `julia main.jl [args]`.
+
+Alternatively, in the command line Julia interpreter, run `run_mds(filename, args)`.
 
 ##Input files
 

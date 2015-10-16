@@ -25,7 +25,7 @@ module FISH_MDS
     include("mds_approximate_fish.jl")
     include("output.jl")
     include("interpolate.jl")
-    include("main.jl")
+    include("mds_main.jl")
 
 
 end # module
