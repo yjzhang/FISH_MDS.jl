@@ -137,7 +137,7 @@ This version will try to run MDS computation from an initial set of wish distanc
 We provide a utility script to remove outlier coordinates from the resultant structural solution.  This script identifies outliers from the distribution of distances between coordinates and replaces them with the midpoint of adjacent coordinates.  
 `Rscript remove_outliers.R chr4_condition1.txt `
 
-This script creates the output file `fix.chr4_condition1.txt ` with the outlier coordinates removed.  The utility script is located within the src folder which can be added to the `$PATH` variable to be used from anywhere. 
+This script creates the output file `fix.chr4_condition1.txt ` with the outlier coordinates removed.  The utility script is located within the `src` folder which can be added to the `$PATH` variable to be used from anywhere. 
 
 ##Re-binning data for visualization
 
