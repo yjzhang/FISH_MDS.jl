@@ -65,9 +65,9 @@ Example lines from HiC_matrix_chr4_condition1.csv:
     
 This is a bed format tab-delimited text file that contains the positions of the bins used by the Hi-C contact matrix.  For example, if the bin size is 200000 (0.2 Mb) then this file will contain:
 
-    chr1    0       200000
-    chr1    200000  400000
-    chr1    400000  600000
+    chr4    0       200000
+    chr4    200000  400000
+    chr4    400000  600000
 
 And the file will correspond to the rows of the HiC_matrix_chr4_condition1.csv signal.  Therefore, the number of rows in the Hi-C matrix and the bins file should be identical.  This bed file is not needed by main.jl, but is useful to build optional file 3 and additional tracks for viewing together with the 3D model.
 
