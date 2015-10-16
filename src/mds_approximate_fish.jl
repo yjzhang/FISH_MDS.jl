@@ -70,10 +70,10 @@ function load_constraints(filename::String; resolution::Int=200000)
     # locus1, locus2, etc. are all bin numbers
     f = open(filename, "r")
     lines = readlines(f)
-    n = int(strip(lines[1])) - 1
+    n = parseint(strip(lines[1])) - 1
     l1 = split(strip(lines[2]))
-    c1 = int(l1[1])
-    c2 = int(l1[2])
+    c1 = parseint(l1[1])
+    c2 = parseint(l1[2])
     d1 = float(l1[3])
     cl1 = Array(Int, n)
     cl2 = Array(Int, n)
@@ -133,7 +133,7 @@ function remove_infs(prob::MDSProblem)
     dist = prob.dist
     while dist_index <= size(dist)[1]
         if mapreduce(x->(isinf(x) || x==0), &, dist[dist_index, 1:end-1])
-            dist = [dist[1:dist_index-1, :], dist[dist_index+1:end, :]]
+            dist = [dist[1:dist_index-1, :]; dist[dist_index+1:end, :]]
             dist = [dist[:, 1:dist_index-1] dist[:,dist_index+1:end]]
             # update fish constraints
             if prob.control_locus_1 != 0
@@ -190,7 +190,7 @@ function make_ipopt_problem(mds::MDSProblem; radius_constraint=false,
     # the index of g at which fish constraints start
     fish_constraint_index = 0
     # dict of (locus_1, locus_2) => num_constraint
-    fish_constraint_dict = Dict{(Int32, Int32), Int32}()
+    fish_constraint_dict = Dict{Tuple{Int32, Int32}, Int32}()
 
     # for FISH constraints, do something
     if fish_constraint
@@ -228,7 +228,7 @@ function make_ipopt_problem(mds::MDSProblem; radius_constraint=false,
     end
 
 
-    interactions = Array((Int, Int), 0)
+    interactions = Array(Tuple{Int, Int}, 0)
     for i in 1:n-1
         for j in i+1:n
             if dist[i,j] != Inf

@@ -5,13 +5,13 @@ end
 type Graph
     nodes::Dict{Int, GraphNode}
     edges::Dict{Int, Array{Int, 1}}
-    lengths::Dict{(Int, Int), Real}
+    lengths::Dict{Tuple{Int, Int}, Real}
     max_index::Int
 end
 
 function init_graph()
     return Graph(Dict{Int, GraphNode}(), Dict{Int, Array{Int, 1}}(),
-        Dict{(Int, Int), Real}(), 1)
+        Dict{Tuple{Int, Int}, Real}(), 1)
 end
 
 function num_nodes(g::Graph)
