@@ -25,8 +25,8 @@ First, open interactive Julia and run:
 
 and create a "main.jl" file with the following commands:  
 
-    julia>  using FISH_MDS
-    julia>  mds_main()
+    julia> using FISH_MDS
+    julia> mds_main()
 
 You can run the the package with `julia main.jl [args]`.
 Alternatively, in the command line Julia interpreter, run `run_mds(filename, args)`.
