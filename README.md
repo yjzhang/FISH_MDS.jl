@@ -33,7 +33,7 @@ Alternatively, in the command line Julia interpreter, run `run_mds(filename, arg
 
 To update the package for future use run:  
 
-    Pkg.update() 
+    julia> Pkg.update() 
 
 ## Usage
 
