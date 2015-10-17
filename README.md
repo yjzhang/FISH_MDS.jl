@@ -154,6 +154,18 @@ an example would be:
 For more information see detailed help page:
 `python rebin_bedgraph.py --help`
 
+A bedgraph file is a tab seperated genomic signal file without a header:
+```chr     start   end     signal```
+for example:
+```
+chr4   50000   75000   1.56248
+chr4   75000   100000  2.21352
+chr4   100000  125000  1.7006
+```
+The tool will re-bin the signal, and return the re-binned data in the following format with a header:
+```chr   start   end   signal   log2.signal   rescaled.signal   trimmed.signal   log2trimmed.signal```
+Where ```signal``` is the mean signal for Hi-C bins, ```log2.signal``` is the log2 transform of that mean signal.  The ```rescaled.signal``` is normalized mean signal to range (0-1) via normalized = (x-min(x))/(max(x)-min(x)).  The ```trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the data removing the bottom and top 5th percentile for the mean signal.  The ```log2trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the log2 data removing the 5th percentile for the mean signal.  
+
 ## References
 
 1) Varoquaux, Nelle, Ferhat Ay, William Stafford Noble, and Jean-Philippe Vert. “A Statistical Approach for Inferring the 3D Structure of the Genome.” Bioinformatics 30, no. 12 (June 15, 2014): i26–33. doi:10.1093/bioinformatics/btu268.
