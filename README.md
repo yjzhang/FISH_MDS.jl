@@ -145,7 +145,14 @@ This script creates the output file `fix.chr4_condition1.txt ` with the outlier 
 
 ##Re-binning data for visualization
 
-We also provide a second utility script for re-binning genomic signal data (such as ChIP-seq) for compatability with Hi-C binning.  This is recommended for only broad signal profiles, such as certain histone modifications. The script requires [bedtools](http://bedtools.readthedocs.org/en/latest/#), the python module [pybedtools] (https://pythonhosted.org/pybedtools/), and for bigWig format requires the additional binary utility [bigWigToBedGraph] (http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v287/bigWigToBedGraph) in the `$PATH` variable. To run this utility script run the command:
+We also provide a second utility script for re-binning genomic signal data (such as ChIP-seq) for compatability with Hi-C binning.  This is recommended for only broad signal profiles, such as certain histone modifications. The script requires [bedtools](http://bedtools.readthedocs.org/en/latest/#), the python module [pybedtools] (https://pythonhosted.org/pybedtools/), and for bigWig format requires the additional binary utility [bigWigToBedGraph] (http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v287/bigWigToBedGraph) in the `$PATH` variable. To add a script to  `$PATH`  you can do the following (make sure script has executable priveledges):
+```
+working_path=/path/to/script_folder
+export PATH=${working_path}:$PATH
+
+```
+
+To run this utility script run the command:
 `python rebin_bedgraph.py input_signal bins resolution outname`
 
 an example would be:
