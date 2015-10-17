@@ -31,6 +31,10 @@ and create a "main.jl" file with the following commands:
 You can run the the package with `julia main.jl [args]`.
 Alternatively, in the command line Julia interpreter, run `run_mds(filename, args)`.
 
+To update the package for future use run:  
+
+    Pkg.update() 
+
 ## Usage
 
     usage: main.jl [-f FISH] [-r RADIUS] [-o OUTPUT] [-i INIT] [--interp]
