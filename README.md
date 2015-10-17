@@ -18,11 +18,7 @@ Visualization: [3DC-Browser] (https://github.com/yjzhang/3DC-Browser)
 
 ##FISH_MDS.jl installation:
 
-First clone the repository:
-
-    git clone https://github.com/yjzhang/FISH_MDS.jl.git
-    
-Then, open interactive Julia and run:  
+First, open interactive Julia and run:  
 
     julia
     julia> Pkg.clone("https://github.com/yjzhang/FISH_MDS.jl.git")
