@@ -4,7 +4,7 @@ Email: [steven_criscione@brown.edu](mailto:steven_criscione@brown.edu)
 Email: [yue_zhang@alumni.brown.edu](mailto:steven_criscione@alumni.brown.edu)
 
 ## Dependencies
-FISH_MDS.jl is a Julia package that models 3D structure from Hi-C contact matrices. To use the package please first download Julia and the following libraries.  The companion viewer for the package is [3DC-Browser] (https://github.com/yjzhang/3DC-Browser.  Please download and install the following:
+FISH_MDS.jl is a Julia package that models 3D structure from Hi-C contact matrices. To use the package please first download Julia and the following libraries.  The companion viewer for the package is [3DC-Browser] (https://github.com/yjzhang/3DC-Browser).  Please download and install the following:
 
 [Julia](http://julialang.org/) tested with version julia/0.4.0
 
