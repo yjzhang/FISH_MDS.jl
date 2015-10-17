@@ -14,7 +14,26 @@ Julia libraries:
 [Grid.jl](https://github.com/timholy/Grid.jl) (for 3D interpolation)  
 [ArgParse.jl](https://github.com/carlobaldassi/ArgParse.jl) (for the command-line interface)  
 
-Visualization: add link to Hi-Brow
+Visualization: [3DC-Browser] (https://github.com/yjzhang/3DC-Browser)
+
+##FISH_MDS.jl installation:
+
+First clone the repository:
+
+    git clone https://github.com/yjzhang/FISH_MDS.jl.git
+    
+Then, open interactive Julia and run:  
+
+    julia
+    julia> Pkg.clone("https://github.com/yjzhang/FISH_MDS.jl.git")
+
+and create a "main.jl" file with the following commands:  
+
+    julia>  using FISH_MDS
+    julia>  mds_main()
+
+You can run the the package with `julia main.jl [args]`.
+Alternatively, in the command line Julia interpreter, run `run_mds(filename, args)`.
 
 ## Usage
 
@@ -34,22 +53,6 @@ Visualization: add link to Hi-Brow
         --shortest-paths     Flag: use shortest paths reconstruction
         -h, --help           show this help message and exit
 
-
-##FISH_MDS.jl installation:
-
-First, in the command-line, open interactive Julia and run 
-
-    julia
-    julia> Pkg.clone("https://github.com/yjzhang/FISH_MDS.jl.git")
-
-Then, create a "main.jl" file with the following commands:
-
-     using FISH_MDS
-     mds_main()
-
-You can run this with `julia main.jl [args]`.
-
-Alternatively, in the command line Julia interpreter, run `run_mds(filename, args)`.
 
 ##Input files
 
@@ -170,7 +173,7 @@ chr4   100000  125000  1.7006
 ```
 The tool will re-bin the signal, and return the re-binned data in the following format with a header:
 ```chr   start   end   signal   log2.signal   rescaled.signal   trimmed.signal   log2trimmed.signal```
-Where ```signal``` is the mean signal for Hi-C bins, ```log2.signal``` is the log2 transform of that mean signal.  The ```rescaled.signal``` is normalized mean signal to range (0-1) via normalized = (x-min(x))/(max(x)-min(x)).  The ```trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the data removing the bottom and top 5th percentile for the mean signal.  The ```log2trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the log2 data removing the 5th percentile for the mean signal.  
+Where ```signal``` is the mean signal for Hi-C bins, ```log2.signal``` is the log2 transform of that mean signal.  The ```rescaled.signal``` is normalized mean signal to range (0-1) via normalized = (x-min(x))/(max(x)-min(x)).  The ```trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the data removing the top and bottom 5th percentile for the mean signal.  The ```log2trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the log2 data removing the top and bottom 5th percentile for the mean signal.  
 
 ## References
 
