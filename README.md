@@ -8,6 +8,8 @@ FISH_MDS.jl is a Julia package that models 3D structure from Hi-C contact matric
 
 [Julia](http://julialang.org/) tested with version julia/0.4.0
 
+Important:  Due to syntax updates the minimum version required is julia/0.4.0.  Prior versions of the language will yield errors.
+
 Julia libraries:
 
 [Ipopt.jl](https://github.com/JuliaOpt/Ipopt.jl)  
