@@ -4,17 +4,38 @@ Email: [steven_criscione@brown.edu](mailto:steven_criscione@brown.edu)
 Email: [yue_zhang@alumni.brown.edu](mailto:steven_criscione@alumni.brown.edu)
 
 ## Dependencies
-FISH_MDS.jl is a Julia package that models 3D structure from Hi-C contact matrices. To use the package please first download Julia and the following libraries.  The companion viewer for the package is Hi-Brow.
+FISH_MDS.jl is a Julia package that models 3D structure from Hi-C contact matrices. To use the package please first download Julia and the following libraries.  The companion viewer for the package is [3DC-Browser] (https://github.com/yjzhang/3DC-Browser).  Please download and install the following:
 
-[Julia](http://julialang.org/)
+[Julia](http://julialang.org/) tested with version julia/0.4.0
+
+Important:  Due to syntax updates the minimum version required is julia/0.4.0.  Prior versions of the language will yield errors.
 
 Julia libraries:
 
 [Ipopt.jl](https://github.com/JuliaOpt/Ipopt.jl)  
-[Grid.jl](https://github.com/timholy/Grid.jl) (for 3D interpolation)  
+[Grid.jl](https://github.com/timholy/Grid.jl) ( optional, for argument: --interp 3D interpolation )  
 [ArgParse.jl](https://github.com/carlobaldassi/ArgParse.jl) (for the command-line interface)  
 
-Visualization: add link to Hi-Brow
+Visualization: [3DC-Browser] (https://github.com/yjzhang/3DC-Browser)
+
+##FISH_MDS.jl installation:
+
+First, open interactive Julia and run:  
+
+    julia
+    julia> Pkg.clone("https://github.com/yjzhang/FISH_MDS.jl.git")
+
+and create a "main.jl" file with the following commands:  
+
+    julia> using FISH_MDS
+    julia> mds_main()
+
+You can run the the package with `julia main.jl [args]`.
+Alternatively, in the command line Julia interpreter, run `run_mds(filename, args)`.
+
+To update the package for future use run:  
+
+    julia> Pkg.update() 
 
 ## Usage
 
@@ -34,22 +55,6 @@ Visualization: add link to Hi-Brow
         --shortest-paths     Flag: use shortest paths reconstruction
         -h, --help           show this help message and exit
 
-
-##FISH_MDS.jl installation:
-
-First, in the command-line, open interactive Julia and run 
-
-    julia
-    julia> Pkg.clone("https://github.com/yjzhang/FISH_MDS.jl.git")
-
-Then, create a "main.jl" file with the following commands:
-
-     using FISH_MDS
-     mds_main()
-
-You can run this with `julia main.jl [args]`.
-
-Alternatively, in the command line Julia interpreter, run `run_mds(filename, args)`.
 
 ##Input files
 
@@ -145,14 +150,32 @@ This script creates the output file `fix.chr4_condition1.txt ` with the outlier 
 
 ##Re-binning data for visualization
 
-We also provide a second utility script for re-binning genomic signal data (such as ChIP-seq) for compatability with Hi-C binning.  This is recommended for only broad signal profiles, such as certain histone modifications. The script requires [bedtools](http://bedtools.readthedocs.org/en/latest/#), the python module [pybedtools] (https://pythonhosted.org/pybedtools/), and for bigWig format requires the additional binary utility [bigWigToBedGraph] (http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v287/bigWigToBedGraph) in the `$PATH` variable. To run this utility script run the command:
+We also provide a second utility script for re-binning genomic signal data (such as ChIP-seq) for compatability with Hi-C binning.  This is recommended for only broad signal profiles, such as certain histone modifications. The script requires [bedtools](http://bedtools.readthedocs.org/en/latest/#), the python module [pybedtools] (https://pythonhosted.org/pybedtools/), and for bigWig format requires the additional binary utility [bigWigToBedGraph] (http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64.v287/bigWigToBedGraph) in the `$PATH` variable. To add a script to  `$PATH`  you can do the following (make sure script has executable priveledges):  
+```
+working_path=/path/to/script_folder
+export PATH=${working_path}:$PATH
+```
+
+To run this utility script run the command:  
 `python rebin_bedgraph.py input_signal bins resolution outname`
 
-an example would be:
+an example would be:  
 `python rebin_bedgraph.py H3K27me3_signal.bedGraph HiC_chr4_bins.bed 200000 H3K27me3_rebinned.bedGraph`
 
-For more information see detailed help page:
+For more information see detailed help page:  
 `python rebin_bedgraph.py --help`
+
+A bedgraph file is a tab seperated genomic signal file without a header:  
+```chr     start   end     signal```
+for example:  
+```
+chr4   50000   75000   1.56248
+chr4   75000   100000  2.21352
+chr4   100000  125000  1.7006
+```
+The tool will re-bin the signal, and return the re-binned data in the following format with a header:
+```chr   start   end   signal   log2.signal   rescaled.signal   trimmed.signal   log2trimmed.signal```
+Where ```signal``` is the mean signal for Hi-C bins, ```log2.signal``` is the log2 transform of that mean signal.  The ```rescaled.signal``` is normalized mean signal to range (0-1) via normalized = (x-min(x))/(max(x)-min(x)).  The ```trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the data removing the top and bottom 5th percentile for the mean signal.  The ```log2trimmed.signal``` is the [Winsorisation] (https://en.wikipedia.org/wiki/Winsorising) transform of the log2 data removing the top and bottom 5th percentile for the mean signal.  
 
 ## References
 
