@@ -2,7 +2,7 @@
 
 SCALE_FACTOR = 100
 
-function output_pdb(coords::Array{Float64, 2}, out_file::String)
+function output_pdb(coords::Array{Float64, 2}, out_file::AbstractString)
     # coords: each row is a coord
     n, dim = size(coords)
     out = open(out_file, "w")
@@ -29,7 +29,7 @@ function output_pdb(coords::Array{Float64, 2}, out_file::String)
     close(out)
 end
 
-function output_txt(coords::Array{Float64, 2}, out_file::String)
+function output_txt(coords::Array{Float64, 2}, out_file::AbstractString)
     # coords: each row is a coord
     # outputs a space-separated text file
     n, dim = size(coords)

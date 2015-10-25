@@ -35,7 +35,7 @@ type MDSProblem
         new(size(dist)[1], dist, r, cl1, cl2, c_loci_1, c_loci_2, c_ratios, d1)
 end
 
-function new_mds(dist::Array{Float64,2}, r::Float64, constraints_file::String;
+function new_mds(dist::Array{Float64,2}, r::Float64, constraints_file::AbstractString;
             resolution::Int=200000, infer_scale::Bool=false)
     # returns a MDSProblem with the constraints in constraints_file
     c = load_constraints(constraints_file, resolution=resolution)
@@ -50,14 +50,14 @@ function infer_scale(mds::MDSProblem)
 end
 
 
-function load_data(filename::String; exponent=1/3, scale=1)
+function load_data(filename::AbstractString; exponent=1/3, scale=1)
     # loads data, convert to NxN array of "wish distances"
     contact_data = readcsv(filename, Float64)
     dist = scale./(contact_data).^exponent
     return dist
 end
 
-function load_constraints(filename::String; resolution::Int=200000)
+function load_constraints(filename::AbstractString; resolution::Int=200000)
     # returns a tuple containing all the constraint information - 
     # control_locus_1, control_locus_2, c_loci_1, c_loci_2,
     # constraint_ratios

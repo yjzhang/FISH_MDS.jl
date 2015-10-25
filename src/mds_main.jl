@@ -25,10 +25,10 @@ function radius_scale(coords::Array{Float64, 2}, radius::Real)
     return radius/max_radius
 end
 
-function run_mds(filename::String; scale::Number=1, constraint::String="",
-            interp::Bool=true, exponent::Number=1/3, output_name::String="",
+function run_mds(filename::AbstractString; scale::Number=1, constraint::AbstractString="",
+            interp::Bool=true, exponent::Number=1/3, output_name::AbstractString="",
             auto_scale::Bool=false, shortest_paths::Bool=false,
-            starting_points_file::String="")
+            starting_points_file::AbstractString="")
     # loading data
     data = load_data(filename, scale=1, exponent=exponent)
     if shortest_paths
