@@ -119,7 +119,7 @@ function parse_cl()
         "--radius", "-r"
             help = "Radius of chromosome (determined via imaging)"
             arg_type = Float64
-            default = 1
+            default = 1.0
         "--output", "-o"
             help = "Output file name"
             default = ""
