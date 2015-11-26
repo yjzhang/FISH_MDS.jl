@@ -69,7 +69,8 @@ function run_mds(filename::AbstractString; scale::Number=1, constraint::Abstract
             l2 = length(ipopt_problem.x)
             if l1 < l2
                 println("Error: not enough starting coords. Filling with random starting points.")
-                starting_x = cat(starting_x, ipopt_problem.x[l1+1:end])
+                # TODO: error?
+                starting_x = cat(1, starting_x, ipopt_problem.x[l1+1:end])
             else
                 println("Error: too many starting coords. Truncating.")
                 println(l1)
