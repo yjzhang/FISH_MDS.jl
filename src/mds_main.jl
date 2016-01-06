@@ -83,7 +83,7 @@ function run_mds(filename::AbstractString; scale::Number=1, constraint::Abstract
     end
     # solve problem
     solveProblem(ipopt_problem)
-    coords = reshape(ipopt_problem.x, 3, int(length(ipopt_problem.x)/3))'
+    coords = reshape(ipopt_problem.x, 3, round(Int, length(ipopt_problem.x)/3))'
     # provided scale
     if !auto_scale && scale != 1
         scale = radius_scale(coords, scale);

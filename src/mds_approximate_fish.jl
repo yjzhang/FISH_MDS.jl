@@ -16,7 +16,7 @@ type MDSProblem
     c1_c2_distance::Float64
 
     # Constructors
-    # New problem with just
+    # New problem with just a distance matrix
     MDSProblem(dist::Array{Float64, 2}) = 
         new(size(dist)[1], dist, 1.0, 0, 0, 
             Array(Int,0), Array(Int,0), Array(Float64,0), 0.0)
@@ -51,7 +51,8 @@ end
 
 
 function load_data(filename::AbstractString; exponent=1/3, scale=1)
-    # loads data, convert to NxN array of "wish distances"
+    # loads data (in the format of a contact map),
+    # convert to NxN array of "wish distances"
     contact_data = readcsv(filename, Float64)
     dist = scale./(contact_data).^exponent
     return dist
@@ -70,10 +71,10 @@ function load_constraints(filename::AbstractString; resolution::Int=200000)
     # locus1, locus2, etc. are all bin numbers
     f = open(filename, "r")
     lines = readlines(f)
-    n = parseint(strip(lines[1])) - 1
+    n = parse(Int, strip(lines[1])) - 1
     l1 = split(strip(lines[2]))
-    c1 = parseint(l1[1])
-    c2 = parseint(l1[2])
+    c1 = parse(Int, l1[1])
+    c2 = parse(Int, l1[2])
     d1 = float(l1[3])
     cl1 = Array(Int, n)
     cl2 = Array(Int, n)
