@@ -74,17 +74,17 @@ url=args.url
 bigWig=args.bigWig
 resolution=float(args.resolution)
 ####################################################################################################
-def test_load():
+def test_load(bigWig):
     try:
         subprocess.Popen("bedtools", stdout=PIPE, stderr=PIPE)
     except:
         raise Exception("Error: bedtools not in your $PATH")
-    if bigwig==True:
+    if bigWig==True:
 	    try:
 	        subprocess.Popen("./bigWigToBedGraph", stdout=PIPE, stderr=PIPE)
 	    except:
 	        raise Exception("Error: bigWigToBedGraph not in your $PATH")
-test_load()
+test_load(bigWig)
 ####################################################################################################
 def check_input():
 	if url== True:
